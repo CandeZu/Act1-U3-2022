@@ -26,9 +26,10 @@ class ManejaFacultades:
             if len(fila) == 6:
                 codigoc=int(fila[1])
                 nombrec=fila[2]
+                fecha_inicio=fila[5]
                 titulo=fila[3]
                 duracion=fila[4]
-                facultad.agregarCarrera(codigoc,nombrec,duracion,titulo)
+                facultad.agregarCarrera(codigoc,nombrec,fecha_inicio,duracion,titulo)
         archivo.close()
     
     def mostrarLista(self):
