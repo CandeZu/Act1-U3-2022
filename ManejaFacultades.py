@@ -24,12 +24,11 @@ class ManejaFacultades:
                 facultad=Facultad(codigo,nombre,direccion,localidad,telefono)
                 self.agregarFacultad(facultad)
             if len(fila) == 6:
-                codigoc=int(fila[0])
-                nombrec=fila[1]
-                fecha_inicio=fila[2]
-                duracion=fila[3]
-                titulo=fila[4]
-                facultad.agregarCarrera(codigoc,nombrec,fecha_inicio,duracion,titulo)
+                codigoc=int(fila[1])
+                nombrec=fila[2]
+                titulo=fila[3]
+                duracion=fila[4]
+                facultad.agregarCarrera(codigoc,nombrec,duracion,titulo)
         archivo.close()
     
     def mostrarLista(self):
@@ -51,4 +50,31 @@ class ManejaFacultades:
                     # carrera.mostrarCarrera()
             i+=1
     
-    
+    def buscarCarrera(self, nombreCarrera: str):
+        
+        band = False
+        unaCarrera = None
+        unaFacultad = None
+        i=0
+        while not band and i<len(self.__lista):
+            unaFacultad: Facultad=self.__lista[i]
+            carreras = unaFacultad.getCarreras()
+            j=0
+            while not band and j<len(carreras):
+                if carreras[j].getNombreCarrera().lower()==nombreCarrera.lower():
+                    band = True
+                j += 1
+            
+            i += 1
+        if band:
+            unaFacultad = self.__lista[i-1]
+            unaCarrera: Carrera = self.__lista[i-1].getCarreras()[j-1]
+        return (unaFacultad, unaCarrera)
+
+    def mostrarCarrera(self, nombreCarrera):
+        unaFacultad, unaCarrera = self.buscarCarrera(nombreCarrera)
+        if unaFacultad!=None and unaCarrera!= None:
+            print("Codigo: {}-{}\nNombre: {}\nLocalidad: {}\n".format(unaFacultad.getCodigoFacultad(), unaCarrera.getCodigoCarrera(), unaFacultad.getNombreFacultad(), unaFacultad.getLocalidad()))
+        else:
+            print("[ERROR] No se encontró la carrera.")
+

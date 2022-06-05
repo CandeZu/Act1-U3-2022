@@ -26,7 +26,9 @@ class Menu:
                 if(self.__op == 1):
                     self.__manejador.buscarFacultad()
 
-                # elif(self.__op ==2):
+                elif(self.__op ==2):
+                    nombreCarrera = input("Ingrese el nombre de la carrera: ")
+                    self.__manejador.mostrarCarrera(nombreCarrera)
 
                 elif(self.__op == 0):
                     continuar = not continuar

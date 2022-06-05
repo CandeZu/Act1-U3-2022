@@ -34,3 +34,5 @@ class Facultad:
     def getCarreras(self):
         return self.__carrera
     
+    def getLocalidad(self):
+        return  self.__localidad
